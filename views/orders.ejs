@@ -1,6 +1,6 @@
 <%- include('partials/header'); -%>
     <div class="orders">
-        <% if(locals.cart) {%>
+        <% if(locals.cart.length > 0) {%>
             <form action="/orders" method="post">
                 <label for="orderdate">Pick a date</label>
                 <input type="date" name="date" id="date" class = 'orderdate' min="17-03-2021" required/>
