@@ -1,10 +1,8 @@
-npm install
-nodemon app
-
-To start
+`npm install`
+`nodemon app`
 
 
-Can create only "buyer" user account
+Can create only `buyer` user account
 
 Technologies  used : 
 1) Node & Express
