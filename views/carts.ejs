@@ -1,0 +1,60 @@
+<%- include('partials/header'); -%>
+<div class="carts">
+    <% if(locals.cart) { %> 
+        <% locals.cart.forEach(cart => {%> 
+            <ul>
+                <li class = "cartProductName"><h2><%=cart.productName%></h2></li>
+                <li><h2>Rs : <%= cart.totalPrice %> </h2></li>
+                <li><h2>Quantity: <%= cart.quantity %> </h2></li>
+                <button class = "subtract" type="click">Remove item</button>
+                <br>
+            </ul>
+        <%} ) %> 
+    <% } else {%>
+        <h1>empty</h1>
+    <% } %> 
+</div>
+
+<div class="proceed">
+    <% if(locals.cart.length > 0) { %>
+        <ul>
+            <button class="order" type="click">Order</button>
+            <button class="cancel" type = 'click'> Cancel</button>
+        </ul>
+    <% } %>  
+</div>
+
+<script>
+    document.querySelectorAll('.subtract').forEach(rem => {
+        rem.addEventListener('click', async (event) => {
+
+            const productName = rem.parentElement.getElementsByClassName('cartProductName')[0].outerText;
+            console.log(productName);
+            try {
+                const res = await fetch('/carts',{
+                    method: 'DELETE',
+                    body: JSON.stringify({productName}),
+                    headers : {'Content-Type' : 'application/json'}
+                })  
+                const data = await res.json();
+                window.alert(data);
+            } catch (error) {
+                window.alert('Cannot be removed');
+            }
+
+        })
+    })
+
+    const order = document.querySelector('.order');
+    order.addEventListener('click', (e) => {
+        location.href = '/orders';
+    })
+    const cancel = document.querySelector('.cancel');
+    cancel.addEventListener('click', (e) => {
+        location.href = '/products';
+    })
+
+</script>
+
+
+<%- include('partials/footer'); -%>

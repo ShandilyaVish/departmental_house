@@ -1,0 +1,39 @@
+<%- include('partials/header'); -%>
+    <div class="orders">
+        <% if(locals.cart) {%>
+            <form action="/orders" method="post">
+                <label for="orderdate">Pick a date</label>
+                <input type="date" name="date" id="date" class = 'orderdate' min="17-03-2021" required/>
+                <label for="delivery">Delivery adress</label>
+                <input type="text" name="text" id="delivery" class="delivery" required/>
+                <br></br>
+                <button type="click" class="submit">Submit</button>
+            </form> 
+
+        <% } %> 
+    </div>
+    <script>
+        const dateElement = document.querySelector('.orderdate');
+        const deliveryElement = document.querySelector('.delivery');
+        const submit = document.querySelector('.submit');
+        submit.addEventListener('click',async (e) => {
+            e.preventDefault();
+            const date = dateElement.value;
+            const delivery = deliveryElement.value;
+            try {
+                const res = await fetch ('/orders', {
+                method : 'POST',
+                body : JSON.stringify({date,delivery}),
+                headers : {'Content-Type' : 'application/json'}
+                })
+                const data = await res.json();
+                if(data.message) {
+                    window.alert(data.message);
+                    location.href = data.location;
+                } 
+            } catch (error) {
+                console.log(error.message);
+            }
+        })
+    </script>
+<%- include('partials/footer'); -%>
