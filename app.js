@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
 const cookieParser = require('cookie-parser');
-const {requireAuth,checkUser,isAdmin} = require('./middleware/authMiddleware');
+const {requireAuth,checkUser,isAdmin,isNotAdmin} = require('./middleware/authMiddleware');
 const cartRoutes = require('./routes/cartRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const {paymentRoutes} = require('./routes/paymentRoutes');
@@ -56,6 +56,7 @@ app.use(async(req,res,next) => {
             {productPrice : item.productPrice,productQuantity : item.productQuantity});
     });
     res.locals.amount = totalPriceToBePaid;
+    res.locals.cart = cart;
     next();
 
 })

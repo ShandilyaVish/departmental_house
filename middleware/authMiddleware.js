@@ -63,8 +63,9 @@ const isAdmin = (req,res,next) => {
     }
 }
 
+
 module.exports = {
     requireAuth,
     checkUser,
-    isAdmin
+    isAdmin,
 };
