@@ -5,7 +5,7 @@ const {get_user} = require('../middleware/getUserIdMiddleware');
 const numberOfOrdersMaxByDate = 20;
 
 const order_get = async (req,res) => {
-    res.locals.cart = get_cart(req,res);
+    res.locals.cart = await get_cart(req,res);
     res.render('orders.ejs')
 }
 const order_post = async (req,res) => {
