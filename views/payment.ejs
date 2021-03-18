@@ -1,19 +1,22 @@
 <%- include('partials/header'); -%>
 
-<form action="/payment" method="POST">
-    <script
-      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-      data-key = "pk_test_51IOvdfIRayP1c5M7e6Gv1CZwPorpW2uYO0Cakce5ka7w3ErIB6zWaT6yidW0gJsKIcatoWauH64bE5ZnpA5kGGLz001yr0bYCQ"
-      data-amount="<% locals.amount %> "
-      data-name="Web Development"
-      data-description="Ecommerce"
-      data-locale="auto">
-    </script>
-    <script>
-      // Hide default stripe button
-      document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
-    </script>
-    <button type="submit" class="btn btn-outline-dark text-white btn-lg">Purchase For Rs<%= locals.amount %> </button>
-  </form>
+<% if(locals.cart) {%>
+    <form action="/payment" method="POST">
+        <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key = "pk_test_51IOvdfIRayP1c5M7e6Gv1CZwPorpW2uYO0Cakce5ka7w3ErIB6zWaT6yidW0gJsKIcatoWauH64bE5ZnpA5kGGLz001yr0bYCQ"
+          data-amount="<% locals.amount %> "
+          data-name="Web Development"
+          data-description="Ecommerce"
+          data-locale="auto">
+        </script>
+        <script>
+          // Hide default stripe button
+          document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
+        </script>
+        <button type="submit" class="btn btn-outline-dark text-white btn-lg">Purchase For Rs<%= locals.amount %> </button>
+      </form>
+<% } %>  
+
 
 <%- include('partials/footer'); -%>
