@@ -1,6 +1,7 @@
-`npm install`
-`nodemon app`
-
+```
+npm install
+nodemon app
+```
 
 Can create only `buyer` user account
 
