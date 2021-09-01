@@ -3,7 +3,7 @@ npm install
 nodemon app
 ```
 
-Can create only `buyer` user account
+Can create only `buyer` as `admin` is already present
 
 Technologies  used : 
 1) Node & Express
